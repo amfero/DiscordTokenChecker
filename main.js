@@ -24,7 +24,6 @@ setInterval(function()
 {
     if(i >= tokens.length) 
     {
-        console.log(unverifiedArr.toString());
         fs.writeFileSync('./output/unverified.txt', unverifiedArr.toString());
         fs.writeFileSync('./output/invalid.txt', invalidArr.toString());
         fs.writeFileSync('./output/verified.txt', verifiedArr.toString());
