@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cattyngmd/DiscordTokenChecker.git"
+    "url": "git+https://github.com/amfero/DiscordTokenChecker.git"
   },
   "author": "amfero",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cattyngmd/DiscordTokenChecker/issues"
+    "url": "https://github.com/amfero/DiscordTokenChecker/issues"
   },
-  "homepage": "https://github.com/cattyngmd/DiscordTokenChecker#readme",
+  "homepage": "https://github.com/amfero/DiscordTokenChecker#readme",
   "dependencies": {
     "chalk": "^4.1.1",
     "request": "^2.88.2"
