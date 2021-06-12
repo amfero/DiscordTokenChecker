@@ -1,0 +1,23 @@
+{
+  "name": "discordtokenchecker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cattyngmd/DiscordTokenChecker.git"
+  },
+  "author": "amfero",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cattyngmd/DiscordTokenChecker/issues"
+  },
+  "homepage": "https://github.com/cattyngmd/DiscordTokenChecker#readme",
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "request": "^2.88.2"
+  }
+}
