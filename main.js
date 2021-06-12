@@ -13,6 +13,10 @@ var verified = 0;
 var unverified = 0;
 var invalid = 0;
 var nitro = 0;
+var verifiedArr = [];
+var unverifiedArr = [];
+var invalidArr = [];
+var nitroArr = [];
 
 var i = 0;
 
@@ -20,6 +24,11 @@ setInterval(function()
 {
     if(i >= tokens.length) 
     {
+        console.log(unverifiedArr.toString());
+        fs.writeFileSync('./output/unverified.txt', unverifiedArr.toString());
+        fs.writeFileSync('./output/invalid.txt', invalidArr.toString());
+        fs.writeFileSync('./output/verified.txt', verifiedArr.toString());
+        fs.writeFileSync('./output/nitro.txt', nitroArr.toString());
         console.log("Finished!");
         process.exit(1);
     }
@@ -44,17 +53,20 @@ function check(token)
         if(!json.id)  
         {
             unverified++;
-            fs.appendFile('./output/unverified.txt', token + "\n", (err) => { if (err) throw err; });
+            unverifiedArr.push(token + "\n");
+            //fs.appendFile('./output/unverified.txt', token + "\n", (err) => { if (err) throw err; });
         }
         else if(!json.verified) 
         {
             invalid++;
-            fs.appendFile('./output/invalid.txt', token + "\n", (err) => { if (err) throw err; });
+            invalidArr.push(token + "\n");
+            //fs.appendFile('./output/invalid.txt', token + "\n", (err) => { if (err) throw err; });
         }
         else
         {
             verified++;
-            fs.appendFile('./output/verified.txt', token + "\n", (err) => { if (err) throw err; });
+            verifiedArr.push(token + "\n");
+            //fs.appendFile('./output/verified.txt', token + "\n", (err) => { if (err) throw err; });
         }
     });
 
@@ -71,7 +83,8 @@ function check(token)
         if(json.length == 1) 
         {
             nitro++;
-            fs.appendFile('./output/nitro.txt', token + "\n", (err) => { if (err) throw err; });
+            nitroArr.push(token + "\n");
+            //fs.appendFile('./output/nitro.txt', token + "\n", (err) => { if (err) throw err; });
         }
     });
 }
