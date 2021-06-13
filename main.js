@@ -9,10 +9,6 @@ fs.writeFileSync('./output/unverified.txt', '');
 
 const tokens = fs.readFileSync('tokens.txt', 'utf-8').replace(/\r/gi, '').split("\n");
 
-var verified = 0;
-var unverified = 0;
-var invalid = 0;
-var nitro = 0;
 var verifiedArr = [];
 var unverifiedArr = [];
 var invalidArr = [];
@@ -33,7 +29,7 @@ setInterval(function()
     }
     check(tokens[i]);
     console.clear();
-    console.log("[" + chalk.yellow("Nitro: ") + nitro +"] " + "[" + chalk.blue("Verified: ") + verified +"] [" + chalk.red("Invalid: ") + invalid +"] [" + chalk.gray("Unverified: ") + unverified +"] ");
+    console.log("[" + chalk.yellow("Nitro: ") + nitroArr.length +"] " + "[" + chalk.blue("Verified: ") + verifiedArr.length +"] [" + chalk.red("Invalid: ") + invalidArr.length +"] [" + chalk.gray("Unverified: ") + unverifiedArr.length +"] ");
     i++;
 }, 500);
 
@@ -51,21 +47,15 @@ function check(token)
         var json = JSON.parse(body);
         if(!json.id)  
         {
-            unverified++;
             unverifiedArr.push(token + "\n");
-            //fs.appendFile('./output/unverified.txt', token + "\n", (err) => { if (err) throw err; });
         }
         else if(!json.verified) 
         {
-            invalid++;
             invalidArr.push(token + "\n");
-            //fs.appendFile('./output/invalid.txt', token + "\n", (err) => { if (err) throw err; });
         }
         else
         {
-            verified++;
             verifiedArr.push(token + "\n");
-            //fs.appendFile('./output/verified.txt', token + "\n", (err) => { if (err) throw err; });
         }
     });
 
@@ -81,9 +71,7 @@ function check(token)
         var json = JSON.parse(body);
         if(json.length == 1) 
         {
-            nitro++;
             nitroArr.push(token + "\n");
-            //fs.appendFile('./output/nitro.txt', token + "\n", (err) => { if (err) throw err; });
         }
     });
 }
