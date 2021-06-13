@@ -1,6 +1,7 @@
 var request = require("request");
 var chalk = require('chalk');
 var fs = require('fs');
+var config = require("./config.json");
 
 fs.writeFileSync('./output/nitro.txt', '');
 fs.writeFileSync('./output/invalid.txt', '');
@@ -13,6 +14,8 @@ var verifiedArr = [];
 var unverifiedArr = [];
 var invalidArr = [];
 var nitroArr = [];
+
+var json1;
 
 var i = 0;
 
@@ -31,7 +34,7 @@ setInterval(function()
     console.clear();
     console.log("[" + chalk.yellow("Nitro: ") + nitroArr.length +"] " + "[" + chalk.blue("Verified: ") + verifiedArr.length +"] [" + chalk.red("Invalid: ") + invalidArr.length +"] [" + chalk.gray("Unverified: ") + unverifiedArr.length +"] ");
     i++;
-}, 500);
+}, config.interval);
 
 function check(token)
 {
@@ -45,17 +48,19 @@ function check(token)
     }, (error, response, body) => {
         if(!body) return;
         var json = JSON.parse(body);
+        json1 = json;
         if(!json.id)  
-        {
-            unverifiedArr.push(token + "\n");
-        }
-        else if(!json.verified) 
         {
             invalidArr.push(token + "\n");
         }
+        else if(!json.verified) 
+        {
+            unverifiedArr.push(token + "\n");
+        }
         else
         {
-            verifiedArr.push(token + "\n");
+            if(config.usernames) verifiedArr.push(token + " | username: " + json.username + "#" + json.discriminator + "\n");
+            else verifiedArr.push(token + "\n");
         }
     });
 
@@ -71,7 +76,8 @@ function check(token)
         var json = JSON.parse(body);
         if(json.length == 1) 
         {
-            nitroArr.push(token + "\n");
+            if(config.usernames) nitroArr.push(token + " | username: " + json1.username + "#" + json1.discriminator + "\n");
+            else nitroArr.push(token + "\n");
         }
     });
 }
