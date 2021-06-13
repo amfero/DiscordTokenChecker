@@ -20,10 +20,10 @@ setInterval(function()
 {
     if(i >= tokens.length) 
     {
-        fs.writeFileSync('./output/unverified.txt', unverifiedArr.toString());
-        fs.writeFileSync('./output/invalid.txt', invalidArr.toString());
-        fs.writeFileSync('./output/verified.txt', verifiedArr.toString());
-        fs.writeFileSync('./output/nitro.txt', nitroArr.toString());
+        fs.writeFileSync('./output/unverified.txt', unverifiedArr.toString().replaceAll(",", ""));
+        fs.writeFileSync('./output/invalid.txt', invalidArr.toString().replaceAll(",", ""));
+        fs.writeFileSync('./output/verified.txt', verifiedArr.toString().replaceAll(",", ""));
+        fs.writeFileSync('./output/nitro.txt', nitroArr.toString().replaceAll(",", ""));
         console.log("Finished!");
         process.exit(1);
     }
