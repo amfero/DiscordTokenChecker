@@ -15,7 +15,7 @@ var unverifiedArr = [];
 var invalidArr = [];
 var nitroArr = [];
 
-var json1;
+var acc;
 
 var i = 0;
 
