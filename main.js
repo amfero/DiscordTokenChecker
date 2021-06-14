@@ -47,19 +47,18 @@ function check(token)
         }
     }, (error, response, body) => {
         if(!body) return;
-        var json = JSON.parse(body);
-        json1 = json;
-        if(!json.id)  
+        var acc = JSON.parse(body);
+        if(!acc.id)  
         {
             invalidArr.push(token + "\n");
         }
-        else if(!json.verified) 
+        else if(!acc.verified) 
         {
             unverifiedArr.push(token + "\n");
         }
         else
         {
-            if(config.usernames) verifiedArr.push(token + " | username: " + json.username + "#" + json.discriminator + "\n");
+            if(config.usernames) verifiedArr.push(token + " | username: " + acc.username + "#" + acc.discriminator + "\n");
             else verifiedArr.push(token + "\n");
         }
     });
@@ -76,7 +75,7 @@ function check(token)
         var json = JSON.parse(body);
         if(json.length == 1) 
         {
-            if(config.usernames) nitroArr.push(token + " | username: " + json1.username + "#" + json1.discriminator + "\n");
+            if(config.usernames) nitroArr.push(token + " | username: " + acc.username + "#" + acc.discriminator + "\n");
             else nitroArr.push(token + "\n");
         }
     });
