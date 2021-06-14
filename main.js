@@ -47,18 +47,19 @@ function check(token)
         }
     }, (error, response, body) => {
         if(!body) return;
-        acc = JSON.parse(body);
-        if(!acc.id)  
+        var acc = JSON.parse(body);
+        json1 = json;
+        if(!json.id)  
         {
             invalidArr.push(token + "\n");
         }
-        else if(!acc.verified) 
+        else if(!json.verified) 
         {
             unverifiedArr.push(token + "\n");
         }
         else
         {
-            if(config.usernames) verifiedArr.push(token + " | username: " + acc.username + "#" + acc.discriminator + "\n");
+            if(config.usernames) verifiedArr.push(token + " | username: " + json.username + "#" + json.discriminator + "\n");
             else verifiedArr.push(token + "\n");
         }
     });
