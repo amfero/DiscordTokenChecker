@@ -47,7 +47,7 @@ function check(token)
         }
     }, (error, response, body) => {
         if(!body) return;
-        var acc = JSON.parse(body);
+        acc = JSON.parse(body);
         if(!acc.id)  
         {
             invalidArr.push(token + "\n");
