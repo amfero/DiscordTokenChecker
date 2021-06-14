@@ -15,7 +15,7 @@ var unverifiedArr = [];
 var invalidArr = [];
 var nitroArr = [];
 
-var json1;
+var acc;
 
 var i = 0;
 
@@ -48,7 +48,7 @@ function check(token)
     }, (error, response, body) => {
         if(!body) return;
         var json = JSON.parse(body);
-        json1 = json;
+        acc = json;
         if(!json.id)  
         {
             invalidArr.push(token + "\n");
@@ -76,7 +76,7 @@ function check(token)
         var json = JSON.parse(body);
         if(json.length == 1) 
         {
-            if(config.usernames) nitroArr.push(token + " | username: " + json1.username + "#" + json1.discriminator + "\n");
+            if(config.usernames) nitroArr.push(token + " | username: " + acc.username + "#" + acc.discriminator + "\n");
             else nitroArr.push(token + "\n");
         }
     });
